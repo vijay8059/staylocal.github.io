@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Transfer files between devices on the same WiFi — fast, private, no internet required." />
+  <title>LocalDrop — WiFi File Transfer</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- QR Code library (loaded from CDN; falls back gracefully if offline) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+          integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSe1bW0/doFqyYDuVfpzH0YYGKJQALVbpCMiA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="container">
+    <div class="logo">
+      <div class="logo-icon">📡</div>
+      <span class="logo-text">LocalDrop</span>
+    </div>
+    <p class="tagline">
+      Transfer files between devices on the same WiFi &mdash; fast, private, no internet required.
+    </p>
+
+    <!-- Mode tabs live inside the header so they sit below the title -->
+    <div class="mode-tabs">
+      <button class="tab active" data-mode="send">📤 Send Files</button>
+      <button class="tab" data-mode="receive">📥 Receive Files</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============================================================
+       SEND SECTION
+       ============================================================ -->
+  <section id="send-section" class="section active">
+
+    <div class="info-banner">
+      <span class="info-icon">ℹ️</span>
+      <span>Both devices must open this page in a browser. Select your role above, then follow the steps.
+            Your files are transferred <strong>directly between devices</strong> — nothing is uploaded to any server.</span>
+    </div>
+
+    <!-- Step 1 — Select files -->
+    <div class="step" id="send-step-1">
+      <div class="step-header">
+        <div class="step-number">1</div>
+        <h2 class="step-title">Select Files to Send</h2>
+      </div>
+      <p class="step-desc">Drag &amp; drop files onto the box below, or click to browse.</p>
+
+      <div class="dropzone" id="dropzone">
+        <span class="dropzone-icon">📂</span>
+        <p class="dropzone-text"><strong>Drop files here</strong><br>or click to browse</p>
+        <input type="file" id="file-input" multiple hidden />
+      </div>
+
+      <div class="file-list" id="file-list"></div>
+
+      <button class="btn primary full-width mt-16" id="create-offer-btn" disabled>
+        🔗 Create Connection Code
+      </button>
+    </div>
+
+    <!-- Step 2 — Share connection code with receiver -->
+    <div class="step hidden" id="send-step-2">
+      <div class="step-header">
+        <div class="step-number">2</div>
+        <h2 class="step-title">Share This Code with the Receiver</h2>
+      </div>
+      <p class="step-desc">
+        Have the receiving device open this page, choose <strong>Receive Files</strong>,
+        then scan the QR code or paste the text code below.
+      </p>
+
+      <div class="qr-section">
+        <div class="qr-wrapper" id="offer-qr"></div>
+        <p class="qr-label">Scan with the receiving device's camera</p>
+      </div>
+
+      <div class="code-area">
+        <textarea class="code-textarea" id="offer-code" readonly
+                  aria-label="Connection code for receiver"></textarea>
+        <div class="code-actions">
+          <button class="btn" id="copy-offer-btn">📋 Copy Code</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 — Paste receiver's response code -->
+    <div class="step hidden" id="send-step-3">
+      <div class="step-header">
+        <div class="step-number">3</div>
+        <h2 class="step-title">Paste the Response Code</h2>
+      </div>
+      <p class="step-desc">
+        After the receiving device generates its response code, paste it here and click the button.
+      </p>
+
+      <div class="code-area">
+        <textarea class="code-textarea" id="answer-input"
+                  placeholder="Paste the receiver's response code here…"
+                  aria-label="Paste receiver response code"></textarea>
+      </div>
+
+      <button class="btn primary full-width mt-12" id="connect-send-btn">
+        📤 Connect &amp; Send Files
+      </button>
+    </div>
+
+    <!-- Step 4 — Transfer progress -->
+    <div class="step hidden" id="send-step-4">
+      <div class="step-header">
+        <div class="step-number">4</div>
+        <h2 class="step-title">Transferring…</h2>
+      </div>
+      <div id="send-progress"></div>
+    </div>
+
+  </section><!-- /send-section -->
+
+
+  <!-- ============================================================
+       RECEIVE SECTION
+       ============================================================ -->
+  <section id="receive-section" class="section">
+
+    <div class="info-banner">
+      <span class="info-icon">ℹ️</span>
+      <span>Ask the sender for their connection code (or scan their QR code with your camera app),
+            then paste it below. Files will download automatically once connected.</span>
+    </div>
+
+    <!-- Step 1 — Paste sender's offer code -->
+    <div class="step" id="recv-step-1">
+      <div class="step-header">
+        <div class="step-number">1</div>
+        <h2 class="step-title">Enter the Sender's Code</h2>
+      </div>
+      <p class="step-desc">
+        Scan the sender's QR code with your camera to open this page and pre-fill the code,
+        or paste the code manually below.
+      </p>
+
+      <div class="code-area">
+        <textarea class="code-textarea" id="offer-input"
+                  placeholder="Paste sender's connection code here…"
+                  aria-label="Paste sender connection code"></textarea>
+      </div>
+
+      <button class="btn primary full-width mt-12" id="create-answer-btn">
+        🔗 Generate Response Code
+      </button>
+    </div>
+
+    <!-- Step 2 — Share response code with sender -->
+    <div class="step hidden" id="recv-step-2">
+      <div class="step-header">
+        <div class="step-number">2</div>
+        <h2 class="step-title">Send This Code Back to the Sender</h2>
+      </div>
+      <p class="step-desc">
+        Show this QR code to the sender or copy the text code and share it.
+        Files will start arriving automatically once the sender connects.
+      </p>
+
+      <div class="qr-section">
+        <div class="qr-wrapper" id="answer-qr"></div>
+        <p class="qr-label">Sender scans this QR code</p>
+      </div>
+
+      <div class="code-area">
+        <textarea class="code-textarea" id="answer-code" readonly
+                  aria-label="Response code for sender"></textarea>
+        <div class="code-actions">
+          <button class="btn" id="copy-answer-btn">📋 Copy Code</button>
+        </div>
+      </div>
+
+      <p class="text-muted text-center mt-12">⏳ Waiting for the sender to connect…</p>
+    </div>
+
+    <!-- Step 3 — Received files -->
+    <div class="step hidden" id="recv-step-3">
+      <div class="step-header">
+        <div class="step-number">3</div>
+        <h2 class="step-title">Receiving Files</h2>
+      </div>
+      <div class="transfer-list" id="recv-files"></div>
+    </div>
+
+  </section><!-- /receive-section -->
+
+
+  <!-- ============================================================
+       HOW IT WORKS
+       ============================================================ -->
+  <div class="how-it-works">
+    <h3>How it works</h3>
+    <div class="steps-row">
+      <div class="how-step">
+        <span class="how-step-icon">📡</span>
+        <span class="how-step-label">Same WiFi</span>
+        <span>Both devices join the same local network</span>
+      </div>
+      <div class="how-step">
+        <span class="how-step-icon">🔗</span>
+        <span class="how-step-label">Exchange Codes</span>
+        <span>Share a one-time connection code or QR</span>
+      </div>
+      <div class="how-step">
+        <span class="how-step-icon">⚡</span>
+        <span class="how-step-label">Direct Transfer</span>
+        <span>Files go device-to-device via WebRTC — no cloud</span>
+      </div>
+      <div class="how-step">
+        <span class="how-step-icon">🔒</span>
+        <span class="how-step-label">Private</span>
+        <span>Nothing leaves your local network</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>

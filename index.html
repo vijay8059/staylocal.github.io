@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="StayLocal — Transfer files between any device on your WiFi. No cloud, no internet upload. Private, fast, cross-platform." />
+  <meta name="theme-color" content="#6c63ff" />
+  <title>StayLocal — Local WiFi File Transfer</title>
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📡</text></svg>" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="StayLocal — Local WiFi File Transfer" />
+  <meta property="og:description" content="Send files between any device on your WiFi. No cloud, no internet upload." />
+  <meta property="og:type" content="website" />
+</head>
+
+<body>
+
+  <!-- =====================================================
+       NAVBAR
+  ===================================================== -->
+  <nav class="navbar">
+    <a href="/" class="nav-brand" style="text-decoration:none;">
+      <div class="nav-logo">📡</div>
+      <span>StayLocal</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#app-section">Web App</a></li>
+      <li><a href="#downloads">Downloads</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button id="theme-toggle" class="theme-toggle" onclick="SL.toggleTheme()" aria-label="Toggle theme" title="Toggle light/dark mode">🌙</button>
+      <a href="#app-section" class="btn btn-primary btn-sm">Open App ↗</a>
+    </div>
+  </nav>
+
+  <!-- =====================================================
+       HERO
+  ===================================================== -->
+  <section class="hero container" aria-labelledby="hero-heading">
+    <div class="hero-badge">📡 No Cloud · No Internet Upload · Pure Local</div>
+
+    <h1 id="hero-heading">
+      Transfer files on your<br/>
+      <span class="highlight">local network.</span>
+    </h1>
+
+    <p class="hero-sub">
+      Drop files from your phone to your laptop in seconds — all over WiFi,
+      entirely private. Your files never touch the internet.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#app-section" class="btn btn-primary">
+        <span>🚀</span> Start Transferring
+      </a>
+      <a href="#downloads" class="btn btn-outline">
+        <span>⬇</span> Download Native App
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="val">0 MB</div><div class="lbl">Cloud Upload</div></div>
+      <div class="hero-stat"><div class="val">∞</div><div class="lbl">File Size Limit</div></div>
+      <div class="hero-stat"><div class="val">5+</div><div class="lbl">Platforms</div></div>
+      <div class="hero-stat"><div class="val">Free</div><div class="lbl">Forever</div></div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       FEATURES
+  ===================================================== -->
+  <section id="features" class="section" aria-labelledby="features-heading">
+    <div class="container">
+      <div class="text-center mb-16">
+        <div class="section-eyebrow">Why StayLocal</div>
+        <h2 id="features-heading" class="section-title">Built for privacy & speed</h2>
+        <p class="section-sub">Everything stays on your network. No account, no subscription, no data harvesting.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>100% Private</h3>
+          <p>Files travel directly between devices on your WiFi. Nothing touches external servers.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Full WiFi Speed</h3>
+          <p>Transfer at the maximum speed your router allows — not bottlenecked by internet upload.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h3>Cross-Platform</h3>
+          <p>Works between any combination of Windows, macOS, Linux, Android, and iOS devices.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📦</div>
+          <h3>No Install Required</h3>
+          <p>The web app works in any modern browser — just open the page and go.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">♾️</div>
+          <h3>No File Size Limit</h3>
+          <p>Send videos, archives, disk images — any size, as many as you want.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>One-Click Connect</h3>
+          <p>Share a QR code or link. The other device connects automatically — no manual IP entry.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       HOW IT WORKS
+  ===================================================== -->
+  <section id="how-it-works" class="section" style="background: var(--surface);" aria-labelledby="how-heading">
+    <div class="container">
+      <div class="text-center mb-16">
+        <div class="section-eyebrow">Simple by Design</div>
+        <h2 id="how-heading" class="section-title">Ready in three steps</h2>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Open StayLocal</h3>
+          <p>Visit this page on both devices while connected to the same WiFi network.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Share your code</h3>
+          <p>Scan the QR code or paste the share link on the second device to connect instantly.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Drop &amp; transfer</h3>
+          <p>Drag files onto the drop zone or tap Browse. Files download directly on the other device.</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-40">
+        <div style="background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 28px; display: inline-block; max-width: 520px;">
+          <p style="font-size: 0.85rem; color: var(--text-muted);">
+            <strong style="color: var(--text);">How is this private?</strong><br/>
+            StayLocal uses WebRTC — a browser technology that establishes a direct
+            peer-to-peer connection. The signalling server only exchanges a short handshake
+            (a few bytes). Your actual files travel directly between devices over WiFi,
+            never touching any server.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       WEB APP
+  ===================================================== -->
+  <section id="app-section" aria-labelledby="app-heading">
+    <div class="container">
+      <div class="text-center mb-16" style="padding-top: 80px;">
+        <div class="section-eyebrow">Web App</div>
+        <h2 id="app-heading" class="section-title">Transfer right now — no install</h2>
+        <p class="section-sub">Both devices must be on the same WiFi network for direct transfer.</p>
+      </div>
+
+      <!-- App Card -->
+      <div class="app-card">
+        <!-- Title bar -->
+        <div class="app-header">
+          <div class="dot-group">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="app-title-bar">StayLocal Transfer</span>
+          <span id="app-status-badge" class="app-status-badge connecting">Initialising…</span>
+        </div>
+
+        <!-- Body -->
+        <div class="app-body">
+
+          <!-- Init section: shown when not connected -->
+          <div id="init-section">
+            <!-- MY PEER ID -->
+            <div class="mb-16">
+              <div class="peer-id-label">Your device code</div>
+              <div class="my-id-panel">
+                <div class="peer-id-box">
+                  <div class="peer-id-value" id="my-peer-id" aria-label="Your peer ID">Generating…</div>
+                  <div class="copy-btn">
+                    <button onclick="SL.copyPeerId()" title="Copy code">
+                      📋 Copy Code
+                    </button>
+                    <button onclick="SL.copyShareLink()" title="Copy share link">
+                      🔗 Copy Link
+                    </button>
+                  </div>
+                </div>
+                <div id="qr-container" title="QR code — scan from other device" aria-label="QR code for sharing"></div>
+              </div>
+              <p class="mt-8" style="font-size: 0.78rem; color: var(--text-muted);">
+                Share this code or QR with the other device to connect.
+              </p>
+            </div>
+
+            <hr class="app-divider" />
+
+            <!-- CONNECT TO PEER -->
+            <div>
+              <div class="peer-id-label">Connect to another device</div>
+              <div class="connect-row">
+                <input
+                  id="connect-input"
+                  class="connect-input"
+                  type="text"
+                  placeholder="Paste their code here…"
+                  maxlength="64"
+                  autocomplete="off"
+                  autocorrect="off"
+                  spellcheck="false"
+                  aria-label="Remote peer ID"
+                />
+                <button id="connect-btn" class="connect-btn" onclick="SL.connectToPeer()">
+                  Connect →
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Connecting spinner -->
+          <div id="connection-pending" class="hidden">
+            <div class="spinner"></div>
+            <p>Waiting for connection…</p>
+            <p style="font-size:0.8rem; margin-top: 8px;">Make sure both devices are on the same WiFi network.</p>
+          </div>
+
+          <!-- Connected info bar -->
+          <div id="conn-info-bar" class="conn-info-bar hidden">
+            <div class="conn-peer">
+              <span>Connected to: </span>
+              <span id="connected-peer-id">—</span>
+            </div>
+            <button class="disconnect-btn" onclick="SL.disconnect()">✕ Disconnect</button>
+          </div>
+
+          <!-- Transfer zone (shown when connected) -->
+          <div id="transfer-section" class="hidden">
+            <!-- Drop zone -->
+            <div id="drop-zone" class="drop-zone" role="button" aria-label="Drop files here to send">
+              <input id="file-input" type="file" multiple aria-label="Select files" />
+              <div class="drop-icon">📂</div>
+              <h3>Drop files here to send</h3>
+              <p>or click to browse — any file type, any size</p>
+            </div>
+
+            <!-- File list -->
+            <div id="file-list" class="file-list">
+              <!-- Populated by JS -->
+            </div>
+            <p id="no-files-msg" style="font-size:0.82rem; color:var(--text-muted); text-align:center; margin-top:16px;">
+              Files you send or receive will appear here.
+            </p>
+          </div>
+
+        </div><!-- /.app-body -->
+      </div><!-- /.app-card -->
+    </div>
+  </section>
+
+  <!-- =====================================================
+       DOWNLOADS
+  ===================================================== -->
+  <section id="downloads" class="section" aria-labelledby="dl-heading">
+    <div class="container">
+      <div class="text-center mb-16">
+        <div class="section-eyebrow">Native Apps</div>
+        <h2 id="dl-heading" class="section-title">Download for your platform</h2>
+        <p class="section-sub">
+          Native apps start a local server on your device so you can transfer files
+          from the menu bar / system tray — no browser required.
+        </p>
+      </div>
+
+      <div class="grid-4">
+        <!-- Windows -->
+        <div class="dl-card">
+          <div class="dl-icon">🪟</div>
+          <h3>Windows</h3>
+          <p>Windows 10 / 11 · x64 &amp; ARM</p>
+          <div style="display:flex; flex-direction:column; gap:8px; align-items:center;">
+            <a href="https://github.com/vijay8059/staylocal.github.io/releases/latest/download/StayLocal-Setup-win-x64.exe"
+               class="dl-btn" download>
+              ⬇ Download .exe
+            </a>
+          </div>
+          <div class="dl-version">v1.0.0 · 32 MB</div>
+        </div>
+
+        <!-- macOS -->
+        <div class="dl-card">
+          <div class="dl-icon">🍎</div>
+          <h3>macOS</h3>
+          <p>macOS 12+ · Universal (Intel + Apple Silicon)</p>
+          <div style="display:flex; flex-direction:column; gap:8px; align-items:center;">
+            <a href="https://github.com/vijay8059/staylocal.github.io/releases/latest/download/StayLocal-mac-universal.dmg"
+               class="dl-btn" download>
+              ⬇ Download .dmg
+            </a>
+          </div>
+          <div class="dl-version">v1.0.0 · 38 MB</div>
+        </div>
+
+        <!-- Linux -->
+        <div class="dl-card">
+          <div class="dl-icon">🐧</div>
+          <h3>Linux</h3>
+          <p>Ubuntu, Fedora, Arch &amp; more · x64</p>
+          <div style="display:flex; flex-direction:column; gap:8px; align-items:center;">
+            <a href="https://github.com/vijay8059/staylocal.github.io/releases/latest/download/StayLocal-linux-x64.AppImage"
+               class="dl-btn" download>
+              ⬇ AppImage
+            </a>
+            <a href="https://github.com/vijay8059/staylocal.github.io/releases/latest/download/StayLocal-linux-x64.deb"
+               class="dl-btn secondary" download>
+              ⬇ .deb package
+            </a>
+          </div>
+          <div class="dl-version">v1.0.0 · 30 MB</div>
+        </div>
+
+        <!-- Android -->
+        <div class="dl-card">
+          <div class="dl-icon">🤖</div>
+          <h3>Android</h3>
+          <p>Android 8.0+ · ARM &amp; x86</p>
+          <div style="display:flex; flex-direction:column; gap:8px; align-items:center;">
+            <a href="https://github.com/vijay8059/staylocal.github.io/releases/latest/download/StayLocal-android.apk"
+               class="dl-btn" download>
+              ⬇ Download .apk
+            </a>
+          </div>
+          <div class="dl-version">v1.0.0 · 18 MB</div>
+        </div>
+      </div>
+
+      <!-- iOS note -->
+      <div class="text-center mt-40">
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 32px; display: inline-block; max-width: 440px;">
+          <div style="font-size: 2rem; margin-bottom: 12px;">📱</div>
+          <h3 style="margin-bottom: 8px;">iPhone &amp; iPad</h3>
+          <p style="font-size: 0.85rem;">
+            Use the <strong style="color: var(--text);">Web App</strong> directly in Safari — no install needed.
+            Just open this page and start transferring.
+          </p>
+          <a href="#app-section" class="btn btn-outline btn-sm mt-16" style="display:inline-flex;">
+            Open Web App
+          </a>
+        </div>
+      </div>
+
+      <!-- Open source note -->
+      <div class="text-center mt-40">
+        <p style="font-size: 0.85rem;">
+          All source code is open on
+          <a href="https://github.com/vijay8059/staylocal.github.io" target="_blank" rel="noopener">
+            GitHub ↗
+          </a>
+          — audit it, fork it, self-host it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       FOOTER
+  ===================================================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#app-section">Web App</a>
+        <a href="#downloads">Downloads</a>
+        <a href="https://github.com/vijay8059/staylocal.github.io" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p>
+        <strong>StayLocal</strong> — your files, your network, your control.<br />
+        <span style="font-size:0.78rem;">Built with ❤ using WebRTC · Open source · MIT licensed</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Toast container -->
+  <div id="toast-container" role="alert" aria-live="polite"></div>
+
+  <!-- =====================================================
+       Scripts (loaded at bottom of body)
+  ===================================================== -->
+  <!-- PeerJS — WebRTC signalling abstraction (CDN, loaded over HTTPS) -->
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <!-- QRCode.js — QR code generation (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- App logic -->
+  <script src="js/app.js"></script>
+
+</body>
+</html>

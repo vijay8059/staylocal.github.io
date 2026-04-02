@@ -164,7 +164,7 @@ function fileIcon(mimeType, name) {
     if (['zip','rar','7z','tar','gz'].includes(ext)) return '🗜️';
     if (['doc','docx'].includes(ext)) return '📝';
     if (['xls','xlsx'].includes(ext)) return '📊';
-    if (['ppt','pptx'].includes(ext)) return '📊';
+    if (['ppt','pptx'].includes(ext)) return '📽️';
     return '📁';
   }
   if (!mimeType) return '📁';
